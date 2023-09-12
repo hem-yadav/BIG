@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "app/**/*.ts",
+    "config/**/*.ts",
+    "models/**/*.ts",
+    "public/**/*.ts",
+    "utils/**/*.ts"  
+  ],
+  "exclude": ["node_modules"]
+}
