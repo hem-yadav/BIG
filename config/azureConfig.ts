@@ -8,6 +8,6 @@ export const AzureConfig = {
   RESET_PASSWORD_POLICY_AUTHORITY: 'https://WinmarkPOC.b2clogin.com/WinmarkPOC.onmicrosoft.com/B2C_1_poc_password_reset',
   EDIT_PROFILE_POLICY_AUTHORITY: 'https://WinmarkPOC.b2clogin.com/WinmarkPOC.onmicrosoft.com/B2C_1_poc_profile_editing',
   AUTHORITY_DOMAIN: 'https://WinmarkPOC.b2clogin.com',
-  APP_REDIRECT_URI: 'http://localhost:3000/redirect',
+  APP_REDIRECT_URI: 'https://localhost:3000/redirect',
   LOGOUT_ENDPOINT: 'https://WinmarkPOC.b2clogin.com/WinmarkPOC.onmicrosoft.com/B2C_1_poc_sign_up_sign_in/oauth2/v2.0/logout?post_logout_redirect_uri=http://localhost:3000',
 };
