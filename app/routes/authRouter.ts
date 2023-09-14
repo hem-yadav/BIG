@@ -1,21 +1,14 @@
+// authRouter.ts
 import express from 'express';
-import passport from '../middleware/authenticationMiddleware';
+import * as authController from '../controllers/authController';
 
 const router = express.Router();
 
-router.get('/protected', passport.authenticate('azuread-openidconnect', { session: false }), (req, res) => {
-  // If the user is authenticated, this route handler will be executed.
-  res.send('Authenticated');
-});
-
-router.post(
-  '/auth/callback',
-  passport.authenticate('azuread-openidconnect', {
-    failureRedirect: '/',
-  }),
-  (req, res) => {
-    res.redirect('/dashboard');
-  }
-);
+router.get('/', authController.renderSignIn);
+router.get("/redirect", authController.handleRedirect);
+router.get('/signin', authController.handleSignIn);
+router.get('/password', authController.handlePasswordReset);
+router.get('/profile', authController.handleProfileUpdate);
+router.get('/signout', authController.handleSignOut);
 
 export default router;
