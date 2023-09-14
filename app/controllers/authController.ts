@@ -62,12 +62,12 @@ export const handlePasswordReset = async (req: Request, res: Response) => {
 
 export const handleProfileUpdate = async (req: Request, res: Response) => {
   try {
-      auth.getAuthCode(
+      // auth.getAuthCode(
           credentials.EDIT_PROFILE_POLICY_AUTHORITY || "",
           [],
           APP_STATES.EDIT_PROFILE,
           res
-      );
+      // );
   } catch (error) {
       console.error('Error during profile update:', error);
       res.status(500).send('An error occurred during profile update.');
