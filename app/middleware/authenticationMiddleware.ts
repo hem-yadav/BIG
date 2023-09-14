@@ -1,10 +1,6 @@
 import passport from 'passport';
 import { OIDCStrategy, IProfile, VerifyCallback } from 'passport-azure-ad';
 import { AzureConfig } from '../../config/azureConfig';
-// import { generateEncryptionKeys } from '../../utils/crypto'; // Import encryption config
-
-// Generate keys before using them
-// const { encryptionKeyBase64, ivBase64 } = generateEncryptionKeys();
 
 // Passport setup
 passport.serializeUser((user: any, done) => {
@@ -25,13 +21,6 @@ const azureADStrategy = new OIDCStrategy(
     allowHttpForRedirectUrl: true,
     clientSecret: AzureConfig.CLIENT_SECRET,
     passReqToCallback: false,
-    // useCookieInsteadOfSession: true,
-    // cookieEncryptionKeys: [
-    //   {
-    //     key: encryptionKeyBase64, // Use the encryption key from your config
-    //     iv: ivBase64, // Use the IV from your config
-    //   },
-    // ],
   },
   (iss: string, sub: string, profile: IProfile, accessToken: string, refreshToken: string, done: VerifyCallback) => {
     return done(null, profile);
