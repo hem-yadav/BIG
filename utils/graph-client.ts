@@ -17,7 +17,6 @@ class Graph {
         return this.client.api(endpoint);
     }
 
-    // Add any custom methods or properties you need
     async getUserInfo(userId: string) {
         try {
             const user = await this.client.api(`/users/${userId}`).get();
@@ -33,18 +32,12 @@ const clientId = credentials.CLIENT_ID ;
 const tenantId = credentials.TENANT_ID ;
 const clientSecret = credentials.CLIENT_SECRET;
 
-console.log('ClientId:', clientId); // Add this line
-console.log('TenantId:', tenantId); // Add this line
-console.log('ClientSecret:', clientSecret); // Add this line
-
-// Create an instance of the TokenCredential class that is imported
 const tokenCredential = new ClientSecretCredential(tenantId!, clientId!, clientSecret!);
 
 const authProvider = new TokenCredentialAuthenticationProvider(tokenCredential, {
     scopes: [scopes],
 });
 
-// Initialize the Graph API client
 const clientOptions: ClientOptions = {
     debugLogging: true,
     authProvider,

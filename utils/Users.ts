@@ -1,4 +1,4 @@
-import Graph from "../utils/graph-client"; // Import the corrected Graph class
+import Graph from "../utils/graph-client";
 import { User } from "@microsoft/microsoft-graph-types";
 import Helpers from "./Helpers";
 import { credentials } from "../config/azureConfig";
@@ -6,17 +6,14 @@ import { credentials } from "../config/azureConfig";
 export default class Users {
   async getUsersAll(): Promise<User[]> {
     try {
-      // Fetch users from Microsoft Graph API
-      const result = await Graph.api("/users/") // Use the Graph instance
-        //.filter("displayName eq 'Adele Vance'")
+      const result = await Graph.api("/users/")
         .select(
           "displayName,id,identities," + Helpers.parseAttributeName("Location")
         )
-        //.orderby('displayName') // Sorting not supported for current query.
         .get();
-
       return result.value as User[];
-    } catch (error) {
+    }
+    catch (error) {
       console.error("Error fetching users:", error);
       throw error;
     }
@@ -28,7 +25,7 @@ export default class Users {
         accountEnabled: true,
         displayName: "[Test] Adele Vance",
         mailNickname: "AdeleV",
-        userPrincipalName: "AdeleV@" + credentials.TENANT_ID, // Use tenant id to create an internal Azure Active Directory user
+        userPrincipalName: "AdeleV@" + credentials.TENANT_ID,
         passwordProfile: {
           forceChangePasswordNextSignIn: true,
           password: "Test@1234",
@@ -36,11 +33,12 @@ export default class Users {
         [Helpers.parseAttributeName("Location")]: "Jaipur",
       };
 
-      // Create user through Microsoft Graph API
-      const result = await Graph.api("/users/").post(user); // Use the Graph instance
+      const result = await Graph.api("/users/").post(user);
 
       return result.value as User;
-    } catch (error) {
+
+    }
+    catch (error) {
       console.error("Error creating user:", error);
       throw error;
     }
@@ -48,16 +46,16 @@ export default class Users {
 
   async updateUser(): Promise<void> {
     try {
-      const userId = "6cb73344-84db-421b-8ae8-acf8524e6ab8"; // TODO: pass the existing user id
+      const userId = "6cb73344-84db-421b-8ae8-acf8524e6ab8";
       const user = {
         businessPhones: ["+1 425 555 0109"],
         officeLocation: "18/2111",
         [Helpers.parseAttributeName("Location")]: "Jaipur",
       };
 
-      // Create user through Microsoft Graph API
-      await Graph.api("/users/" + userId).update(user); // Use the Graph instance
-    } catch (error) {
+      await Graph.api("/users/" + userId).update(user);
+    }
+    catch (error) {
       console.error("Error updating user:", error);
       throw error;
     }
